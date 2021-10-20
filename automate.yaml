@@ -1,0 +1,20 @@
+name: automate
+channels:
+- conda-forge
+- robostack
+- anaconda
+- intel
+dependencies:
+- hvplot
+- numpy
+- pandas
+- scikit-learn
+- scipy
+- ipython
+- seaborn
+- ipywidgets
+- ipykernel
+- spyder
+- seaborn
+- notebook
+- matplotlib
