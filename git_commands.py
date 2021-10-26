@@ -27,10 +27,10 @@ def initialize():
         print("git is already initialized, proceed")
 
 def add():
-    message = input("\nDo you want to git add all files or specific? all/specific/n")
+    message = input("\nDo you want to git add all files or specific? all/choose \n")
     if message == "all":
         run("add","--all")
-    elif message == "specific":
+    elif message == "choose":
         message2 = input("\nwhat files would you like to input\n")
         run("add", f'{message2}')
 def commit():
@@ -38,7 +38,7 @@ def commit():
     run('commit', "-m", message)
 
 def push():
-    message = input("\nDo you want to push these changes? (y/n)\n")
+    message = input("\nDo you want to push these changes? y or n\n")
     if message == "no":
         print("exiting push command")
     Token,repo,branch,branch_exist = import_yaml()
@@ -54,6 +54,7 @@ if __name__ == '__main__':
         print("add - add specific or all files to your git repo")
         print("commit - commit these changes with an input message")
         print("push - push these changes to your repo from yaml")
+        print("end - exit script")
         command_prompt = input("\ninput what git command you want\n")
         command_prompt = command_prompt.lower()
         if command_prompt == "add":
