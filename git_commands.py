@@ -37,12 +37,23 @@ def commit():
     message = input("\ncommit message:\n")
     run('commit', "-m", message)
 
-def branch():
+def push():
     message = input("\nDo you want to push these changes? (y/n)\n")
+    if message == "no":
+        print("exiting push command")
+    Token,repo,branch,branch_exist = import_yaml()
+    if branch_exist == "no":
+        run("checkout","-b", branch)     
+    combine_str = "https://" + Token + "@github.com/" + repo
+    run("push","--set-upstream",combine_str,branch)
    
 if __name__ == '__main__':
-    import_yaml()
     while True:
+        print("\nWhat git commands do you want to execute?")
+        print("init - initialize an empty git repo")
+        print("add - add specific or all files to your git repo")
+        print("commit - commit these changes with an input message")
+        print("push - push these changes to your repo from yaml")
         command_prompt = input("\ninput what git command you want\n")
         command_prompt = command_prompt.lower()
         if command_prompt == "add":
@@ -51,9 +62,7 @@ if __name__ == '__main__':
             initialize()
         elif command_prompt == "commit":
             commit()
-        elif command_prompt == "branch":
-            branch()
-        # elif command_prompt == "push":
-        #     #push()
+        elif command_prompt == "push":
+            push()
         elif command_prompt == "end":
             break
